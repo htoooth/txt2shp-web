@@ -36,6 +36,22 @@ start = (reponse)->
 		<input type ="file" name="upload" value="on" />
 		<input type="submit" value="Upload file" />
 		</form>
+		</br>
+		<h1>Please note:</h1></br>
+		The upload data format:</br>
+		The first row is fields' name of your data that must contains named "x" field and named "y" field.</br>
+		The rest are your data body.</br>
+		Example:</br>
+		id,x,y
+		1,3505480.372,526656.982</br>
+		2,3505364.878,526755.337</br>
+		3,3505295.358,526811.077</br>
+		4,3505244.534,526850.272</br>
+		5,3505163.643,526910.583</br>
+		6,3505119.047,526943.073</br>
+		7,3505145.917,526998.919</br>
+		8,3505268.711,526908.482</br>
+		9,3505366.23,526832.758</br>
 		</body>
 		</html>
 	'''
