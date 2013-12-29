@@ -3,6 +3,14 @@ querystring = require 'querystring'
 fs = require 'fs'
 
 formidable = require './formidable'
+txt2shp = require('./application').convert
+fileNum = require('./application').fileNum
+config = require('./config').config
+path = require 'path'
+
+file = 
+	upload:config.uploadDir
+	download:config.download
 
 sleep = (sec) ->
 	startTime = new Date().getTime()
@@ -39,17 +47,22 @@ upload = (reponse,request) ->
 	console.log 'Request handler "upload" was called'
 	form = new formidable.IncomingForm()
 	console.log 'about to parse'
-	form.uploadDir = './tmp';
+	form.uploadDir = config.uploadDir 
 	form.parse request,(error,fields,files)->
 		console.log 'parsing done'
-		fs.renameSync files.upload.path, './tmp/1.txt'
+		filenum = fileNum()
+		newDir =  path.normalize "#{config.uploadDir}/#{filenum}"
+		fs.mkdirSync newDir
+		file.upload = path.normalize "#{newDir}/#{filenum}.txt"
+		fs.renameSync files.upload.path, file.upload 
+		file.download = txt2shp file.upload
 		reponse.writeHead 200,{'Content-Type':'text/html'}
 		reponse.write '''Please <a href="/download">click here</a> to download data.'''
 		do reponse.end
 
 download = (reponse) ->
 	console.log 'Request handler "download" was called'
-	fs.readFile './tmp/test.zip','binary',(error,file)->
+	fs.readFile "#{file.download}",'binary',(error,file)->
 		if error
 			reponse.writeHead 500,{'Content-Type':'text/plain'}
 			reponse.write error+'\n'
