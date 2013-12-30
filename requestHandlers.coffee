@@ -42,7 +42,7 @@ start = (reponse)->
 		The first row is fields' name of your data that must contains named "x" field and named "y" field.</br>
 		The rest are your data body.</br>
 		Example:</br>
-		id,x,y
+		id,x,y</br>
 		1,3505480.372,526656.982</br>
 		2,3505364.878,526755.337</br>
 		3,3505295.358,526811.077</br>
