@@ -71,7 +71,10 @@ upload = (reponse,request) ->
 		fs.mkdirSync newDir
 		file.upload = path.normalize "#{newDir}/#{filenum}.txt"
 		fs.renameSync files.upload.path, file.upload 
+
+		console.log 'about to txt2shp'
 		file.download = txt2shp file.upload
+
 		reponse.writeHead 200,{'Content-Type':'text/html'}
 		reponse.write '''Please <a href="/download">click here</a> to download data.'''
 		do reponse.end

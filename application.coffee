@@ -5,7 +5,7 @@ config = require('./config').config
 zip = (input,output) ->
 	cmd = path.normalize "#{config.zip} #{input} #{output}"
 	exec cmd ,(error,stdout,stderr) ->
-		console.log stdout
+		console.log 'zip done'
 	return output
 
 txt2any = (filePath) ->
@@ -18,8 +18,9 @@ txt2any = (filePath) ->
 
 	cmd = path.normalize "#{config.txt2shp} -i #{txtDir} -o #{shpDir}"
 	exec cmd,(error,stdout,stderr) ->
+		console.log 'txt2shp done'
+		console.log 'about to zip'
 		zip zipInpputDir,zipOutputFile
-		console.log stdout
 	return zipOutputFile
 
 inc = (n)->	
