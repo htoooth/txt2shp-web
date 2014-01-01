@@ -74,6 +74,7 @@ upload = (reponse,request) ->
 
 		console.log 'about to txt2shp'
 		file.download = txt2shp file.upload
+		sleep config.waitTime
 
 		reponse.writeHead 200,{'Content-Type':'text/html'}
 		reponse.write '''Please <a href="/download">click here</a> to download data.'''

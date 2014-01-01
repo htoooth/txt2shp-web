@@ -1,7 +1,6 @@
 http = require 'http'
 url = require 'url'
 
-
 start = (route,handle)->
 	onRequest = (request,response) ->
 
